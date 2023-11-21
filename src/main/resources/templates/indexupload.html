@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Spring Boot Thymeleaf Example</title>
+</head>
+<body>
+    <div class="container mt-3">
+        <h1>File Upload</h1>
+
+        <form action="/upload-file" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="file" class="form-label">Select file to upload</label>
+                <input type="file" accept=".yaml" class="form-control" name="file" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+    </div>
+</body>
+</html>
