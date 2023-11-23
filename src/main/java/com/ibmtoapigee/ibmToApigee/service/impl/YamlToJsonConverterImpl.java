@@ -1,6 +1,7 @@
 package com.ibmtoapigee.ibmToApigee.service.impl;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,10 +20,13 @@ public class YamlToJsonConverterImpl implements YamlToJsonConverter {
 	
 	private static final Logger logger = LoggerFactory.getLogger(YamlToJsonConverterImpl.class);
 
+	static String yamlFileName;
 
     public String convertYamlToJsonFile(File uploadedFile) throws IOException {
     	logger.info("Yaml - Json conversion starts");
         String yamlData = Files.readString(Path.of(uploadedFile.getPath()));
+          yamlFileName = uploadedFile.getName();
+        logger.info("Yaml FileName "+uploadedFile.getName());
         //logger.info("yamlData "+yamlData);
         ObjectMapper yamlReader = new ObjectMapper(new YAMLFactory());
         Object obj = yamlReader.readValue(yamlData, Object.class);

@@ -49,10 +49,20 @@ public class JsonToXmlConverterImpl implements JsonToXmlConverter {
         //String xmlString =U.jsonToXml(jsonData);
    	String xmlString = null;
    	
-          xmlString = externalApiCallService.postApiResponse("https://prafulsonawane400-eval-test.apigee.net/jsontoxmlutility", jsonData);   		 
-   	
+       //   xmlString = externalApiCallService.postApiResponse("https://prafulsonawane400-eval-test.apigee.net/jsontoxmlutility", jsonData);   		 
+       xmlString = externalApiCallService.postApiResponse("https://emea-poc8-test.apigee.net/v1/json2xml", jsonData);   		 
+
+          //String cTFileName1 = YamlToJsonConverterImpl.yamlFileName;
+
+          
    	    //logger.info("xmlString "+xmlString);
-        String cTFileName = System.currentTimeMillis()+"";
+        String cTFileName1 = YamlToJsonConverterImpl.yamlFileName;
+        
+        String[] parts = cTFileName1.split("\\.");
+        String cTFileName = parts[0];
+
+        logger.info("File name: " + cTFileName);
+        
 
    	    logger.info("cTFileName "+cTFileName);
         File file = commonDataUtils.getXMLStoredFile(cTFileName);
