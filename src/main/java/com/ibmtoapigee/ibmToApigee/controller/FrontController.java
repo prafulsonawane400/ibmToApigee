@@ -60,39 +60,36 @@ public class FrontController {
 		return "redirect:/v/dashboard?failDownload=true";
     }
 	
-	@RequestMapping(method=RequestMethod.GET, value={"/v/home" , "/v/upload-file", "/upload-file"})
+	@RequestMapping(method=RequestMethod.GET, value={"/home" , "/upload-file", "/upload-file"})
 	public ModelAndView getVHome () {
 		logger.info("FrontController :: getVHome ::: page is loading...");
 		ModelAndView mAv = new ModelAndView();
-		mAv.setViewName("ui-2");
+		//mAv.setViewName("ui-2");
+		mAv.setViewName("index");
     	mAv.addObject("formControl", true);
 		return mAv;
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, value={"/v/dashboard"})
-	public ModelAndView getDashBoard (@RequestParam(defaultValue = "false", required = false) Boolean failDownload) {
-		logger.info("FrontController :: getDashBoard ::: page is loading...");
-		List<FileTracker> fileTrackerList = fileTrackerDBService.getFileTrackerList();
+	@RequestMapping(method=RequestMethod.GET, value={"/team"})
+	public ModelAndView getVTeam () {
+		logger.info("FrontController :: getVTeam ::: page is loading...");
 		ModelAndView mAv = new ModelAndView();
-		mAv.setViewName("ui-2");
-    	mAv.addObject("formControl", false);
-    	mAv.addObject("DashboardView", true);
-    	mAv.addObject("fileTrackerList", fileTrackerList);
-    	if (failDownload) {
-            mAv.addObject("Download_Error", true);
-    	}
+		mAv.setViewName("team");
+		//mAv.setViewName("index");
+    	mAv.addObject("formControl", true);
 		return mAv;
-	} 
+	}
 	
-	  @PostMapping("/v/upload-file")
+	  @PostMapping("/upload-file")
 	    @ResponseBody
-	    public ModelAndView uploadFile(@RequestParam("file") MultipartFile file) {   
+	    public ModelAndView uploadFile(@RequestParam("file-input") MultipartFile file) {   
 	    	ModelAndView mAv = null;
 	    	String result = null;
 	    	try {
 	        	logger.info("Upload-file request triggered");
 	    		mAv = new ModelAndView();
-	    		mAv.setViewName("ui-2");
+	    		//mAv.setViewName("ui-2");
+	    		mAv.setViewName("index");
 	            result = processApigeeConversionService.processRequest(file);
 	            createAndStore(result, file);
 	            mAv.addObject("success", true);
