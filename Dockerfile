@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-alpine AS builder
+FROM openjdk:17-jre-alpine
 
 # Set working directory
 WORKDIR /app
