@@ -1,7 +1,7 @@
 FROM openjdk:8-jdk-alpine
 
 # Copy your application JAR file to the container
-COPY target/ibmToApigee-0.0.1-SNAPSHOT.jar app.jar
+COPY target/.jar app.jar
 
 # Expose the container port (usually 8080)
 EXPOSE 8080
